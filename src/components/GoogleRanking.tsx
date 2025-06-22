@@ -85,7 +85,8 @@ export const GoogleRanking: React.FC = () => {
                 {[
                   { rank: 2, title: "Rakip Site 1", desc: "Geleneksel SEO yöntemleri..." },
                   { rank: 3, title: "Rakip Site 2", desc: "Eski SEO teknikleri..." },
-                  { rank: 4, title: "Rakip Site 3", desc: "Manuel SEO çalışmaları..." }
+                  { rank: 4, title: "Rakip Site 3", desc: "Manuel SEO çalışmaları..." },
+                  { rank: 5, title: "Rakip Site 4", desc: "Manuel SEO çalışmaları..." }
                 ].map((site, index) => (
                   <motion.div
                     key={index}
@@ -218,21 +219,7 @@ export const GoogleRanking: React.FC = () => {
             </div>
 
             {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <button className="bg-gradient-to-r from-blue-900 to-blue-800 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-blue-800 hover:to-blue-700 transition-all duration-300 flex items-center justify-center gap-2">
-                <Brain className="w-5 h-5" />
-                AI SEO Analizi Başlat
-              </button>
-              
-              <button className="border-2 border-blue-900 text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-900 hover:text-white transition-all duration-300">
-                Başarı Hikayelerini Gör
-              </button>
-            </motion.div>
+        
           </motion.div>
         </div>
 

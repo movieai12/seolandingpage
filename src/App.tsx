@@ -1,4 +1,3 @@
-import React from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { SEOHead } from './components/SEOHead';
 import { Header } from './components/Header';
@@ -13,6 +12,8 @@ import { SEODemo } from './components/SEODemo';
 import { Blog } from './components/Blog';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { AISEOSlider } from './components/seoslider';
+import { GlobeSection } from './components/gloabal';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         <Header />
         <Hero />
         <WhyAISEO />
+        <AISEOSlider />
+        <GlobeSection />
         <GoogleRanking />
         <RisingGraph />
         <Services />
