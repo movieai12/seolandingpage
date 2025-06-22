@@ -166,7 +166,7 @@ export const SEODemo: React.FC = () => {
             </div>
 
             {/* Features List */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg">
+            {/* <div className="bg-white rounded-2xl p-6 shadow-lg">
               <h4 className="font-semibold text-gray-900 mb-4">Analiz Kapsamı:</h4>
               <div className="space-y-3">
                 {[
@@ -183,7 +183,7 @@ export const SEODemo: React.FC = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </motion.div>
 
           {/* Results Display */}
@@ -281,7 +281,7 @@ export const SEODemo: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <div className="bg-white rounded-3xl p-8 shadow-2xl">
+              <div className="bg-white rounded-3xl p-8 pb-12 shadow-2xl">
                 <div className="text-center py-12">
                   <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
                     <Search className="w-12 h-12 text-blue-900" />

@@ -1,10 +1,13 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Bot, TrendingUp, Zap, ArrowRight, Play } from 'lucide-react';
+import type React from "react"
+import { motion } from "framer-motion"
+import { Bot, TrendingUp, Zap, ArrowRight, Play, BarChart3, Target, Rocket } from "lucide-react"
 
 export const Hero: React.FC = () => {
   return (
-    <section id="home" className="relative min-h-screen bg-gradient-to-br from-cyan-50 via-blue-50 to-white overflow-hidden pt-20">
+    <section
+      id="home"
+      className="relative min-h-screen bg-gradient-to-br from-cyan-50 via-blue-50 to-white overflow-hidden pt-20"
+    >
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <motion.div
@@ -38,17 +41,17 @@ export const Hero: React.FC = () => {
                 </span>
                 <span className="text-cyan-100">AI Destekli SEO Çözümleri</span>
               </div>
-              
+
               <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
-                Google'da 
+                Google'da
                 <span className="text-transparent bg-gradient-to-r from-blue-900 via-cyan-600 to-blue-800 bg-clip-text block">
                   Zirveye Tırman!
                 </span>
               </h1>
-              
+
               <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed">
-                Arama motorlarında sadece görünür değil, <strong className="text-blue-900">lider olun</strong>. 
-                AI destekli SEO çözümlerimizle rakiplerinizi geride bırakın.
+                Arama motorlarında sadece görünür değil, <strong className="text-blue-900">lider olun</strong>. AI
+                destekli SEO çözümlerimizle rakiplerinizi geride bırakın.
               </p>
 
               <div className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-blue-100">
@@ -77,7 +80,7 @@ export const Hero: React.FC = () => {
                 Ücretsiz SEO Analizi Al
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
-              
+
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -88,153 +91,126 @@ export const Hero: React.FC = () => {
               </motion.button>
             </motion.div>
 
-            {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="grid grid-cols-3 gap-6 pt-8"
             >
-              <div className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-blue-100">
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  className="text-3xl lg:text-4xl font-bold text-blue-900 mb-1"
+              {[
+                { value: "%127", label: "Trafik Artışı" },
+                { value: "850+", label: "Mutlu Müşteri" },
+                { value: "%34", label: "Hızlı Sonuç" },
+              ].map(({ value, label }, idx) => (
+                <div
+                  key={label}
+                  className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-blue-100"
                 >
-                  %127
-                </motion.div>
-                <div className="text-sm text-gray-600">Trafik Artışı</div>
-              </div>
-              <div className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-blue-100">
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                  className="text-3xl lg:text-4xl font-bold text-blue-900 mb-1"
-                >
-                  850+
-                </motion.div>
-                <div className="text-sm text-gray-600">Mutlu Müşteri</div>
-              </div>
-              <div className="text-center bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-blue-100">
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.8, delay: 1 }}
-                  className="text-3xl lg:text-4xl font-bold text-blue-900 mb-1"
-                >
-                  %34
-                </motion.div>
-                <div className="text-sm text-gray-600">Hızlı Sonuç</div>
-              </div>
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.6 + idx * 0.2 }}
+                    className="text-3xl lg:text-4xl font-bold text-blue-900 mb-1"
+                  >
+                    {value}
+                  </motion.div>
+                  <div className="text-sm text-gray-600">{label}</div>
+                </div>
+              ))}
             </motion.div>
           </div>
 
-          {/* Right Content - Clean Earth Visual */}
+          {/* Right Side: Google Logo + İkonlar */}
           <div className="relative flex items-center justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="relative w-full h-[600px] flex items-center justify-center"
+              className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center"
             >
-              {/* Main Earth Image */}
-              <div className="relative w-80 h-80">
-                <motion.img
-                  src="https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Dünya - Global SEO"
-                  className="w-full h-full rounded-full object-cover shadow-2xl"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  loading="lazy"
-                />
-                
-                {/* Glow Effect */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 to-cyan-400/20 blur-xl"></div>
-                
-                {/* Simple Rising Graph Elements */}
-                {[...Array(6)].map((_, i) => (
-                  <motion.div
-                    key={`graph-${i}`}
-                    className="absolute w-8 h-16 bg-gradient-to-t from-blue-500 to-cyan-400 rounded-sm shadow-lg"
-                    style={{
-                      top: '50%',
-                      left: '50%',
-                      transformOrigin: '0 0',
-                      clipPath: "polygon(0% 100%, 20% 60%, 40% 30%, 60% 10%, 80% 5%, 100% 0%, 100% 100%)"
-                    }}
-                    animate={{
-                      rotate: 360,
-                      x: Math.cos((i * 60) * Math.PI / 180) * 160 - 16,
-                      y: Math.sin((i * 60) * Math.PI / 180) * 160 - 32,
-                      scale: [1, 1.2, 1]
-                    }}
-                    transition={{
-                      duration: 12 + i,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  />
-                ))}
-
-                {/* Performance Metrics Cards */}
+              {/* Google Logo */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="relative"
+              >
                 <motion.div
-                  animate={{ 
-                    y: [-10, 10, -10],
-                    rotate: [0, 2, -2, 0]
-                  }}
+                  animate={{ scale: [1, 1.05, 1], rotate: [0, 1, -1, 0] }}
                   transition={{ duration: 4, repeat: Infinity }}
-                  className="absolute -top-12 -left-12 w-16 h-16 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl flex items-center justify-center border border-blue-100"
+                  className="text-7xl md:text-8xl font-bold tracking-tight"
                 >
-                  <div className="text-center">
-                    <div className="text-sm font-bold text-green-600">+180%</div>
-                    <div className="text-xs text-gray-600">Trafik</div>
-                  </div>
+                  <span className="text-blue-500">G</span>
+                  <span className="text-red-500">o</span>
+                  <span className="text-yellow-500">o</span>
+                  <span className="text-blue-500">g</span>
+                  <span className="text-green-500">l</span>
+                  <span className="text-red-500">e</span>
                 </motion.div>
 
-                <motion.div
-                  animate={{ 
-                    y: [8, -8, 8],
-                    rotate: [0, -3, 3, 0]
-                  }}
-                  transition={{ duration: 3.5, repeat: Infinity }}
-                  className="absolute -top-8 -right-16 w-14 h-14 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl flex items-center justify-center border border-green-100"
-                >
-                  <div className="text-center">
-                    <div className="text-sm font-bold text-blue-600">#1</div>
-                    <div className="text-xs text-gray-600">Sıra</div>
-                  </div>
-                </motion.div>
+                {/* Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-red-400/20 via-yellow-400/20 via-green-400/20 to-red-400/20 blur-2xl"></div>
+              </motion.div>
 
-                <motion.div
-                  animate={{ 
-                    y: [-6, 6, -6],
-                    rotate: [0, 4, -4, 0]
-                  }}
-                  transition={{ duration: 4.5, repeat: Infinity }}
-                  className="absolute -bottom-10 -left-14 w-15 h-15 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl flex items-center justify-center border border-orange-100"
-                >
-                  <div className="text-center">
-                    <div className="text-sm font-bold text-orange-600">AI</div>
-                    <div className="text-xs text-gray-600">SEO</div>
-                  </div>
-                </motion.div>
+              {/* Yaklaştırılmış ve Responsive İkonlar */}
+              <motion.div
+                animate={{ y: [-8, 8, -8], rotate: [0, 1, -1, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute top-4 right-4 md:right-10 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white"
+              >
+                <TrendingUp className="w-5 h-5 mb-1" />
+                <span className="text-xs font-bold">+247%</span>
+              </motion.div>
 
+              <motion.div
+                animate={{ y: [6, -6, 6], rotate: [0, -2, 2, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity }}
+                className="absolute bottom-6 left-4 md:left-10 w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-xl flex flex-col items-center justify-center text-white"
+              >
+                <Target className="w-5 h-5 mb-1" />
+                <span className="text-xs font-bold">#1</span>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [-10, 10, -10], rotate: [0, 3, -3, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity }}
+                className="absolute top-1/2 right-2 md:right-6 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full shadow-xl flex items-center justify-center text-white"
+              >
+                <BarChart3 className="w-5 h-5" />
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [12, -12, 12], rotate: [0, -1, 1, 0] }}
+                transition={{ duration: 3.8, repeat: Infinity }}
+                className="absolute bottom-1/3 left-2 md:left-6 w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl shadow-xl flex flex-col items-center justify-center text-white p-2"
+              >
+                <Rocket className="w-5 h-5 mb-1" />
+                <span className="text-xs font-bold">AI</span>
+              </motion.div>
+
+              {/* Particles */}
+              {[...Array(8)].map((_, i) => (
                 <motion.div
-                  animate={{ 
-                    y: [10, -10, 10],
-                    rotate: [0, -2, 2, 0]
+                  key={`particle-${i}`}
+                  className="absolute w-2 h-2 bg-blue-400 rounded-full"
+                  animate={{
+                    x: [0, Math.cos((i * 45 * Math.PI) / 180) * 100],
+                    y: [0, Math.sin((i * 45 * Math.PI) / 180) * 100],
+                    opacity: [0, 1, 0],
+                    scale: [0, 1, 0],
                   }}
-                  transition={{ duration: 3.8, repeat: Infinity }}
-                  className="absolute -bottom-12 -right-12 w-16 h-16 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl flex items-center justify-center border border-purple-100"
-                >
-                  <div className="text-center">
-                    <div className="text-sm font-bold text-purple-600">24/7</div>
-                    <div className="text-xs text-gray-600">İzleme</div>
-                  </div>
-                </motion.div>
-              </div>
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                    ease: "easeInOut",
+                  }}
+                  style={{
+                    left: "50%",
+                    top: "50%",
+                  }}
+                />
+              ))}
             </motion.div>
           </div>
         </div>
@@ -260,5 +236,5 @@ export const Hero: React.FC = () => {
         </motion.div>
       </motion.div>
     </section>
-  );
-};
+  )
+}

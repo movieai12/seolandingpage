@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  MessageCircle, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  MessageCircle,
   Send,
   Facebook,
   Twitter,
@@ -56,7 +56,7 @@ export const Contact: React.FC = () => {
             İletişime <span className="text-blue-900">Geçin</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            SEO projeleriniz için ücretsiz danışmanlık alın. 
+            SEO projeleriniz için ücretsiz danışmanlık alın.
             Uzmanlarımız size özel strateji geliştirecek.
           </p>
         </motion.div>
@@ -144,7 +144,7 @@ export const Contact: React.FC = () => {
                   />
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col sm:flex-row gap-4 pb-3">
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -152,9 +152,9 @@ export const Contact: React.FC = () => {
                     className="flex-1 bg-gradient-to-r from-blue-900 to-blue-800 text-white px-6 py-4 rounded-xl font-semibold text-lg hover:from-blue-800 hover:to-blue-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
                   >
                     <Send className="w-5 h-5" />
-                    Ücretsiz Danışmanlık Al
+                    Danışmanlık Al
                   </motion.button>
-                  
+
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -168,7 +168,7 @@ export const Contact: React.FC = () => {
               </form>
 
               {/* Trust Indicators */}
-              <div className="mt-8 pt-6 border-t border-gray-200">
+              {/* <div className="mt-8 pt-6 border-t border-gray-200">
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div className="flex flex-col items-center">
                     <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-2">
@@ -192,7 +192,7 @@ export const Contact: React.FC = () => {
                     <div className="text-xs text-gray-600">Puan</div>
                   </div>
                 </div>
-              </div>
+              </div>*/}
             </div>
           </motion.div>
 
@@ -205,7 +205,7 @@ export const Contact: React.FC = () => {
           >
             {/* Contact Cards */}
             <div className="grid sm:grid-cols-2 gap-6">
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
               >
@@ -217,7 +217,7 @@ export const Contact: React.FC = () => {
                 <p className="text-sm text-gray-500 mt-1">Pazartesi - Cuma: 09:00 - 18:00</p>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
               >
@@ -229,7 +229,7 @@ export const Contact: React.FC = () => {
                 <p className="text-sm text-gray-500 mt-1">24 saat içinde yanıtlıyoruz</p>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
               >
@@ -241,7 +241,7 @@ export const Contact: React.FC = () => {
                 <p className="text-gray-600">No:85 Beylikdüzü/İstanbul</p>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300"
               >
@@ -255,42 +255,7 @@ export const Contact: React.FC = () => {
             </div>
 
             {/* Map */}
-            <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-red-600" />
-                </div>
-                <h4 className="font-semibold text-gray-900">Ofisimizi Ziyaret Edin</h4>
-              </div>
-              <div className="relative h-64 bg-gray-100 rounded-2xl overflow-hidden">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3013.2159828154194!2d28.65577931580353!3d41.004450179244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0x3c5c3b2b6b4f8f8f!2sCumhuriyet%20Mah.%2C%20Belediye%20Cd.%20No%3A85%2C%2034520%20Beylikd%C3%BCz%C3%BC%2F%C4%B0stanbul!5e0!3m2!1str!2str!4v1644567890123!5m2!1str!2str"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Dijitalfiir Ofis Konumu - Beylikdüzü"
-                />
-                {/* Custom Map Marker Overlay */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center shadow-lg"
-                  >
-                    <MapPin className="w-5 h-5 text-white" />
-                  </motion.div>
-                </div>
-              </div>
-              <div className="mt-4 p-4 bg-blue-50 rounded-xl">
-                <p className="text-sm text-blue-800">
-                  📍 <strong>Beylikdüzü Merkez:</strong> E-5 karayoluna 5 dakika mesafede, 
-                  toplu taşıma ile kolay ulaşım. Ücretsiz otopark mevcuttur.
-                </p>
-              </div>
-            </div>
+
 
             {/* Social Media */}
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
@@ -320,9 +285,49 @@ export const Contact: React.FC = () => {
                 Güncel SEO ipuçları ve başarı hikayelerimizi takip edin!
               </p>
             </div>
-          </motion.div>
-        </div>
 
+
+
+          </motion.div>
+
+         
+        </div>
+        <div className="bg-white rounded-3xl my-20 p-6 shadow-lg border border-gray-100">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-red-600" />
+              </div>
+              <h4 className="font-semibold text-gray-900">Ofisimizi Ziyaret Edin</h4>
+            </div>
+            <div className="relative h-64 bg-gray-100 rounded-2xl overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3013.2159828154194!2d28.65577931580353!3d41.004450179244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0x3c5c3b2b6b4f8f8f!2sCumhuriyet%20Mah.%2C%20Belediye%20Cd.%20No%3A85%2C%2034520%20Beylikd%C3%BCz%C3%BC%2F%C4%B0stanbul!5e0!3m2!1str!2str!4v1644567890123!5m2!1str!2str"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Dijitalfiir Ofis Konumu - Beylikdüzü"
+              />
+              {/* Custom Map Marker Overlay */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <MapPin className="w-5 h-5 text-white" />
+                </motion.div>
+              </div>
+            </div>
+            <div className="mt-4 p-4 bg-blue-50 rounded-xl">
+              <p className="text-sm text-blue-800">
+                📍 <strong>Beylikdüzü Merkez:</strong> E-5 karayoluna 5 dakika mesafede,
+                toplu taşıma ile kolay ulaşım. Ücretsiz otopark mevcuttur.
+              </p>
+            </div>
+          </div>
         {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -334,10 +339,10 @@ export const Contact: React.FC = () => {
             Hemen Başlayalım! 🚀
           </h3>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            SEO yolculuğunuza bugün başlayın. İlk görüşme tamamen ücretsiz, 
+            SEO yolculuğunuza bugün başlayın. İlk görüşme tamamen ücretsiz,
             yükümlülük gerektirmez.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             <motion.button
               whileHover={{ scale: 1.05 }}
