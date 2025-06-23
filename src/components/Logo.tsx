@@ -21,7 +21,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "", showText = true }) =
           className="w-15 h-10 rounded-lg shadow-lg overflow-hidden"
         >
           <img
-            src="/Gemini_Generated_Image_3cd1jw3cd1jw3cd1.png"
+            src="/Gemini_Generated_Image_3cd1jw3cd1jw3cd1.webp"
             alt="World"
             className="w-full h-full object-cover"
           />
