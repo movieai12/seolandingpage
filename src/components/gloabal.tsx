@@ -1,7 +1,5 @@
-
-
 import { motion } from "framer-motion"
-import { Globe, TrendingUp, Target, Zap } from "lucide-react"
+import { Globe, TrendingUp, Target, Zap, Brain } from "lucide-react"
 import { memo, useMemo } from "react"
 
 // Memoized background effects component
@@ -67,7 +65,7 @@ FeatureCard.displayName = "FeatureCard"
 
 // Memoized globe content component
 const GlobeContent = memo(() => {
-  const globeVariants = useMemo(
+  const brainVariants = useMemo(
     () => ({
       initial: { opacity: 0, scale: 0.8 },
       animate: { opacity: 1, scale: 1 },
@@ -77,7 +75,7 @@ const GlobeContent = memo(() => {
 
   return (
     <motion.div
-      variants={globeVariants}
+      variants={brainVariants}
       initial="initial"
       whileInView="animate"
       viewport={{ once: true }}
@@ -85,39 +83,37 @@ const GlobeContent = memo(() => {
       className="relative"
     >
       <div className="relative h-[600px] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-800/30 to-gray-900/30 backdrop-blur-sm border border-gray-700/50 flex items-center justify-center">
-        {/* Globe Image with Subtle Animation */}
+        {/* Brain Icon with Animation */}
         <motion.div
           animate={{
-            scale: [1, 1.02, 1],
+            scale: [1, 1.05, 1],
+            rotate: [0, 2, -2, 0],
           }}
           transition={{
-            duration: 8,
+            duration: 6,
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
             repeatType: "loop",
           }}
           className="relative"
         >
-          <img
-            src="/Gemini_Generated_Image_3cd1jw3cd1jw3cd1.png"
-            alt="Dünya Görseli"
-            className="w-96 h-96 object-contain drop-shadow-2xl"
-            loading="lazy"
-          />
+          <div className="w-48 h-48 bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 rounded-full flex items-center justify-center shadow-2xl">
+            <Brain className="w-24 h-24 text-white drop-shadow-lg" />
+          </div>
 
           {/* Glow Effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 via-purple-400/10 to-cyan-400/10 rounded-full blur-xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-cyan-400/20 rounded-full blur-xl"></div>
         </motion.div>
 
-        {/* Globe Info Overlay */}
+        {/* AI Info Overlay */}
         <div className="absolute bottom-4 left-4 bg-gray-900/70 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm">
-          🌍 Global SEO Kapsamı • 📊 Dünya Çapında Erişim
+          🧠 AI Destekli SEO • 🚀 Akıllı Optimizasyon
         </div>
 
         {/* Live Indicator */}
         <div className="absolute top-4 right-4 bg-gray-900/70 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm flex items-center gap-2">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-          <span>Global SEO Aktif</span>
+          <span>AI Aktif</span>
         </div>
       </div>
     </motion.div>
@@ -166,8 +162,8 @@ export const GlobeSection = memo(() => {
     <section className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-hidden">
       <BackgroundEffects />
 
-      <div className="relative container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
           {/* Left Content - SEO Information */}
           <div className="space-y-8">
             <motion.div
