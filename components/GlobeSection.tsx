@@ -1,8 +1,9 @@
+'use client'
+
 import { motion } from "framer-motion"
 import { Globe, TrendingUp, Target, Zap, Brain } from "lucide-react"
 import { memo, useMemo } from "react"
 
-// Memoized background effects component
 const BackgroundEffects = memo(() => (
   <div className="absolute inset-0 pointer-events-none">
     <motion.div
@@ -36,7 +37,6 @@ const BackgroundEffects = memo(() => (
 
 BackgroundEffects.displayName = "BackgroundEffects"
 
-// Memoized feature card component
 const FeatureCard = memo(
   ({
     icon: Icon,
@@ -63,7 +63,6 @@ const FeatureCard = memo(
 
 FeatureCard.displayName = "FeatureCard"
 
-// Memoized globe content component
 const GlobeContent = memo(() => {
   const brainVariants = useMemo(
     () => ({
@@ -83,7 +82,6 @@ const GlobeContent = memo(() => {
       className="relative"
     >
       <div className="relative h-[600px] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-800/30 to-gray-900/30 backdrop-blur-sm border border-gray-700/50 flex items-center justify-center">
-        {/* Brain Icon with Animation */}
         <motion.div
           animate={{
             scale: [1, 1.05, 1],
@@ -101,16 +99,13 @@ const GlobeContent = memo(() => {
             <Brain className="w-24 h-24 text-white drop-shadow-lg" />
           </div>
 
-          {/* Glow Effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-cyan-400/20 rounded-full blur-xl"></div>
         </motion.div>
 
-        {/* AI Info Overlay */}
         <div className="absolute bottom-4 left-4 bg-gray-900/70 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm">
           🧠 AI Destekli SEO • 🚀 Akıllı Optimizasyon
         </div>
 
-        {/* Live Indicator */}
         <div className="absolute top-4 right-4 bg-gray-900/70 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm flex items-center gap-2">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
           <span>AI Aktif</span>
@@ -122,9 +117,7 @@ const GlobeContent = memo(() => {
 
 GlobeContent.displayName = "GlobeContent"
 
-// Main Globe Section - EXPORT
-export const GlobeSection = memo(() => {
-  // Memoized feature data
+export default function GlobeSection() {
   const features = useMemo(
     () => [
       {
@@ -149,7 +142,6 @@ export const GlobeSection = memo(() => {
     [],
   )
 
-  // Memoized animation variants
   const contentVariants = useMemo(
     () => ({
       initial: { opacity: 0, y: 30 },
@@ -164,7 +156,6 @@ export const GlobeSection = memo(() => {
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
-          {/* Left Content - SEO Information */}
           <div className="space-y-8">
             <motion.div
               variants={contentVariants}
@@ -208,12 +199,9 @@ export const GlobeSection = memo(() => {
             </motion.div>
           </div>
 
-          {/* Right Content - Globe Image */}
           <GlobeContent />
         </div>
       </div>
     </section>
   )
-})
-
-GlobeSection.displayName = "GlobeSection"
+}

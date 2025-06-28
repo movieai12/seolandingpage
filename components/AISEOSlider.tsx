@@ -54,7 +54,6 @@ const seoTips = [
   },
 ]
 
-// Memoized background animation component
 const BackgroundAnimation = memo(() => (
   <div className="absolute inset-0 pointer-events-none">
     <motion.div
@@ -88,7 +87,6 @@ const BackgroundAnimation = memo(() => (
 
 BackgroundAnimation.displayName = "BackgroundAnimation"
 
-// Memoized floating elements component
 const FloatingElements = memo(() => (
   <>
     <motion.div
@@ -137,11 +135,10 @@ const FloatingElements = memo(() => (
 
 FloatingElements.displayName = "FloatingElements"
 
-export const AISEOSlider = memo(() => {
+export default function AISEOSlider() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
-  // Memoized current slide data
   const currentTip = useMemo(() => seoTips[currentSlide], [currentSlide])
 
   useEffect(() => {
@@ -166,7 +163,6 @@ export const AISEOSlider = memo(() => {
     setCurrentSlide(index)
   }, [])
 
-  // Memoized animation variants
   const slideVariants = useMemo(
     () => ({
       initial: { opacity: 0, x: 300 },
@@ -189,7 +185,6 @@ export const AISEOSlider = memo(() => {
       <BackgroundAnimation />
 
       <div className="relative container mx-auto px-4">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -215,7 +210,6 @@ export const AISEOSlider = memo(() => {
           </p>
         </motion.div>
 
-        {/* Slider Container */}
         <div className="relative max-w-6xl mx-auto" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
             <AnimatePresence mode="wait">
@@ -231,7 +225,6 @@ export const AISEOSlider = memo(() => {
                 <div className="relative h-full flex items-center">
                   <div className="container mx-auto px-8">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
-                      {/* Content */}
                       <div className="text-white space-y-6">
                         <motion.div
                           variants={contentVariants}
@@ -282,7 +275,6 @@ export const AISEOSlider = memo(() => {
                         </motion.button>
                       </div>
 
-                      {/* Visual */}
                       <div className="relative">
                         <motion.div
                           initial={{ opacity: 0, scale: 0.8 }}
@@ -290,10 +282,7 @@ export const AISEOSlider = memo(() => {
                           transition={{ delay: 0.3 }}
                           className="relative"
                         >
-                          {/* Main Visual */}
                           <div className="text-9xl text-center mb-8">{currentTip.image}</div>
-
-                          {/* Floating Elements */}
                           <FloatingElements />
                         </motion.div>
                       </div>
@@ -304,7 +293,6 @@ export const AISEOSlider = memo(() => {
             </AnimatePresence>
           </div>
 
-          {/* Dots Indicator */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
             {seoTips.map((_, index) => (
               <button
@@ -313,6 +301,7 @@ export const AISEOSlider = memo(() => {
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentSlide ? "bg-white shadow-lg scale-125" : "bg-white/50 hover:bg-white/70"
                 }`}
+                aria-label={`Slide ${index + 1}`}
               />
             ))}
           </div>
@@ -320,6 +309,4 @@ export const AISEOSlider = memo(() => {
       </div>
     </section>
   )
-})
-
-AISEOSlider.displayName = "AISEOSlider"
+}

@@ -1,13 +1,15 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Brain, Zap, Target, BarChart3 } from 'lucide-react';
+'use client'
 
-export const WhyAISEO: React.FC = () => {
+import React from 'react'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { Brain, Zap, Target, BarChart3 } from 'lucide-react'
+
+export function WhyAISEO() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
-  });
+  })
 
   const features = [
     {
@@ -30,7 +32,7 @@ export const WhyAISEO: React.FC = () => {
       title: "Veri Odaklı Strateji",
       description: "Büyük veri analizi ile rakip analizi yaparak en doğru stratejileri belirliyoruz."
     }
-  ];
+  ]
 
   return (
     <section ref={ref} className="py-20 bg-white">
@@ -72,7 +74,6 @@ export const WhyAISEO: React.FC = () => {
           ))}
         </div>
 
-        {/* Performance Stats */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -117,5 +118,5 @@ export const WhyAISEO: React.FC = () => {
         </motion.div>
       </div>
     </section>
-  );
-};
+  )
+}

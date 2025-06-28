@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Menu, X, Phone, Mail } from 'lucide-react';
-import { Logo } from './Logo';
+'use client'
 
-export const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+import React, { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { Menu, X, Phone, Mail } from 'lucide-react'
+import { Logo } from './Logo'
+import Link from 'next/link'
+
+export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const menuItems = [
     { name: 'Ana Sayfa', href: '#home' },
@@ -21,7 +24,7 @@ export const Header: React.FC = () => {
     { name: 'Hakkımızda', href: '#about' },
     { name: 'Blog', href: '#blog' },
     { name: 'İletişim', href: '#contact' }
-  ];
+  ]
 
   return (
     <motion.header
@@ -35,10 +38,8 @@ export const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
           <Logo />
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item, index) => (
               <motion.a
@@ -52,7 +53,6 @@ export const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* Contact Info & CTA */}
           <div className="hidden lg:flex items-center gap-6">
             <div className="flex items-center gap-4 text-sm text-gray-600">
               <div className="flex items-center gap-1">
@@ -73,16 +73,15 @@ export const Header: React.FC = () => {
             </motion.button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-700"
+            aria-label="Menüyü aç/kapat"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ 
@@ -111,5 +110,5 @@ export const Header: React.FC = () => {
         </motion.div>
       </div>
     </motion.header>
-  );
-};
+  )
+}

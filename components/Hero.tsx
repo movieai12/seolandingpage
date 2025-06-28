@@ -1,14 +1,15 @@
-import type React from "react"
+'use client'
+
+import React from "react"
 import { motion } from "framer-motion"
 import { Bot, TrendingUp, Zap, ArrowRight, Play, BarChart3, Target, Rocket } from "lucide-react"
 
-export const Hero: React.FC = () => {
+export function Hero() {
   return (
     <section
       id="home"
       className="relative min-h-screen bg-gradient-to-br from-cyan-50 via-blue-50 to-white overflow-hidden pt-20"
     >
-      {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -26,7 +27,6 @@ export const Hero: React.FC = () => {
 
       <div className="relative container mx-auto px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-          {/* Left Content */}
           <div className="space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -120,7 +120,6 @@ export const Hero: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Right Side: Google Logo + İkonlar */}
           <div className="relative flex items-center justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -128,7 +127,6 @@ export const Hero: React.FC = () => {
               transition={{ duration: 1, delay: 0.3 }}
               className="relative w-full h-[400px] md:h-[600px] flex items-center justify-center"
             >
-              {/* Google Logo */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -148,11 +146,9 @@ export const Hero: React.FC = () => {
                   <span className="text-red-500">e</span>
                 </motion.div>
 
-                {/* Glow */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-red-400/20 via-yellow-400/20 via-green-400/20 to-red-400/20 blur-2xl"></div>
               </motion.div>
 
-              {/* Yaklaştırılmış ve Responsive İkonlar */}
               <motion.div
                 animate={{ y: [-8, 8, -8], rotate: [0, 1, -1, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
@@ -188,7 +184,6 @@ export const Hero: React.FC = () => {
                 <span className="text-xs font-bold">AI</span>
               </motion.div>
 
-              {/* Particles */}
               {[...Array(8)].map((_, i) => (
                 <motion.div
                   key={`particle-${i}`}
@@ -216,7 +211,6 @@ export const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

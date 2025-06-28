@@ -1,13 +1,15 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Globe, Zap } from 'lucide-react';
+'use client'
+
+import React from 'react'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 interface LogoProps {
-  className?: string;
-  showText?: boolean;
+  className?: string
+  showText?: boolean
 }
 
-export const Logo: React.FC<LogoProps> = ({ className = "", showText = true }) => {
+export function Logo({ className = "", showText = true }: LogoProps) {
   return (
     <motion.div
       className={`flex items-center gap-3 ${className}`}
@@ -20,10 +22,13 @@ export const Logo: React.FC<LogoProps> = ({ className = "", showText = true }) =
           transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
           className="w-15 h-10 rounded-lg shadow-lg overflow-hidden"
         >
-          <img
+          <Image
             src="/Gemini_Generated_Image_3cd1jw3cd1jw3cd1.webp"
-            alt="World"
+            alt="Dijitalfiir Logo"
+            width={60}
+            height={40}
             className="w-full h-full object-cover"
+            priority
           />
         </motion.div>
       </div>
@@ -37,5 +42,5 @@ export const Logo: React.FC<LogoProps> = ({ className = "", showText = true }) =
         </div>
       )}
     </motion.div>
-  );
-};
+  )
+}
