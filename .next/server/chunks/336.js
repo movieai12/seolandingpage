@@ -1,1 +1,0 @@
-"use strict";exports.id=336,exports.ids=[336],exports.modules={3336:(e,o,t)=>{t.r(o),t.d(o,{$$typeof:()=>d,__esModule:()=>r,default:()=>l});let s=(0,t(6843).createProxy)(String.raw`/home/muhammet/Downloads/project-bolt-sb1-8woggsqf/seolandingpage/components/Blog.tsx`),{__esModule:r,$$typeof:d}=s,l=s.default}};
