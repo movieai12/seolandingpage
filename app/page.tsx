@@ -24,10 +24,6 @@ const Testimonials = dynamic(() => import('@/components/Testimonials'), {
   loading: () => <div className="h-96 bg-blue-50 animate-pulse" />
 })
 
-const Pricing = dynamic(() => import('@/components/Pricing'), {
-  loading: () => <div className="h-96 bg-white animate-pulse" />
-})
-
 const SEODemo = dynamic(() => import('@/components/SEODemo'), {
   loading: () => <div className="h-96 bg-gray-50 animate-pulse" />
 })
@@ -47,7 +43,6 @@ export default function Home() {
       <GoogleRanking />
       <RisingGraph />
       <Testimonials />
-      <Pricing />
       <SEODemo />
       <Footer />
     </main>
