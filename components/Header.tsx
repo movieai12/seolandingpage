@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Phone, Mail, ChevronDown, Search, BarChart3, ExternalLink, Zap } from 'lucide-react'
+import { Menu, X, ChevronDown, Search, BarChart3, ExternalLink, Zap } from 'lucide-react'
 import { Logo } from './Logo'
 import Link from 'next/link'
 
@@ -20,7 +20,6 @@ export function Header() {
   }, [])
 
   const menuItems = [
-    { name: 'Ana Sayfa', href: '/' },
     { name: 'Hizmetler', href: '/hizmetler' },
     { 
       name: 'Araçlar', 
@@ -56,12 +55,13 @@ export function Header() {
           : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <Link href="/">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          <Link href="/" className="flex-shrink-0">
             <Logo />
           </Link>
 
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item, index) => (
               <div key={index} className="relative">
@@ -73,7 +73,7 @@ export function Header() {
                   >
                     <motion.button
                       whileHover={{ scale: 1.05 }}
-                      className="flex items-center gap-1 text-gray-700 hover:text-blue-900 font-medium transition-colors duration-300"
+                      className="flex items-center gap-1 text-gray-700 hover:text-blue-900 font-medium transition-colors duration-300 py-2"
                     >
                       {item.name}
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
@@ -98,10 +98,10 @@ export function Header() {
                                 className="flex items-start gap-3 p-4 rounded-xl hover:bg-blue-50 transition-colors duration-300 group"
                                 onClick={closeDropdown}
                               >
-                                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors duration-300">
+                                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors duration-300 flex-shrink-0">
                                   <dropdownItem.icon className="w-5 h-5 text-blue-600" />
                                 </div>
-                                <div>
+                                <div className="min-w-0">
                                   <div className="font-semibold text-gray-900 group-hover:text-blue-900 transition-colors duration-300">
                                     {dropdownItem.name}
                                   </div>
@@ -120,7 +120,7 @@ export function Header() {
                   <motion.div whileHover={{ scale: 1.05 }}>
                     <Link
                       href={item.href}
-                      className="text-gray-700 hover:text-blue-900 font-medium transition-colors duration-300"
+                      className="text-gray-700 hover:text-blue-900 font-medium transition-colors duration-300 py-2 block"
                     >
                       {item.name}
                     </Link>
@@ -130,17 +130,8 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-6">
-            <div className="flex items-center gap-4 text-sm text-gray-600">
-              <div className="flex items-center gap-1">
-                <Phone className="w-4 h-4" />
-                <span>+90 555 123 4567</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Mail className="w-4 h-4" />
-                <span>info@dijitalfiir.com</span>
-              </div>
-            </div>
+          {/* Desktop CTA Button */}
+          <div className="hidden lg:flex items-center">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/seo-analizi"
@@ -151,85 +142,93 @@ export function Header() {
             </motion.div>
           </div>
 
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-700"
+            className="lg:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:text-blue-900 transition-colors duration-300"
             aria-label="Menüyü aç/kapat"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ 
-            opacity: isMenuOpen ? 1 : 0, 
-            height: isMenuOpen ? 'auto' : 0 
-          }}
-          className="lg:hidden overflow-hidden bg-white border-t border-gray-200"
-        >
-          <nav className="py-4 space-y-4">
-            {menuItems.map((item, index) => (
-              <div key={index}>
-                {item.dropdown ? (
-                  <div>
-                    <button
-                      onClick={() => handleDropdownToggle(item.name)}
-                      className="flex items-center justify-between w-full px-4 py-2 text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-300"
-                    >
-                      {item.name}
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
-                        activeDropdown === item.name ? 'rotate-180' : ''
-                      }`} />
-                    </button>
-                    <AnimatePresence>
-                      {activeDropdown === item.name && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="bg-gray-50 overflow-hidden"
+        {/* Mobile Navigation */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="lg:hidden overflow-hidden bg-white border-t border-gray-200 shadow-lg"
+            >
+              <nav className="py-4 space-y-2 max-h-96 overflow-y-auto">
+                {menuItems.map((item, index) => (
+                  <div key={index}>
+                    {item.dropdown ? (
+                      <div>
+                        <button
+                          onClick={() => handleDropdownToggle(item.name)}
+                          className="flex items-center justify-between w-full px-4 py-3 text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-300 font-medium"
                         >
-                          {item.dropdown.map((dropdownItem, dropdownIndex) => (
-                            <Link
-                              key={dropdownIndex}
-                              href={dropdownItem.href}
-                              className="flex items-center gap-3 px-8 py-3 text-gray-600 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-300"
-                              onClick={() => {
-                                setIsMenuOpen(false)
-                                setActiveDropdown(null)
-                              }}
+                          {item.name}
+                          <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
+                            activeDropdown === item.name ? 'rotate-180' : ''
+                          }`} />
+                        </button>
+                        <AnimatePresence>
+                          {activeDropdown === item.name && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="bg-gray-50 overflow-hidden"
                             >
-                              <dropdownItem.icon className="w-4 h-4" />
-                              {dropdownItem.name}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                              {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                                <Link
+                                  key={dropdownIndex}
+                                  href={dropdownItem.href}
+                                  className="flex items-center gap-3 px-8 py-3 text-gray-600 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-300"
+                                  onClick={() => {
+                                    setIsMenuOpen(false)
+                                    setActiveDropdown(null)
+                                  }}
+                                >
+                                  <dropdownItem.icon className="w-4 h-4 flex-shrink-0" />
+                                  <span className="font-medium">{dropdownItem.name}</span>
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="block px-4 py-3 text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-300 font-medium"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
                   </div>
-                ) : (
+                ))}
+                
+                {/* Mobile CTA Button */}
+                <div className="px-4 pt-4 border-t border-gray-200">
                   <Link
-                    href={item.href}
-                    className="block px-4 py-2 text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-300"
+                    href="/seo-analizi"
+                    className="block w-full bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-300 text-center"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {item.name}
+                    Ücretsiz Analiz
                   </Link>
-                )}
-              </div>
-            ))}
-            <div className="px-4 pt-4 border-t border-gray-200">
-              <Link
-                href="/seo-analizi"
-                className="block w-full bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-300 text-center"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Ücretsiz Analiz
-              </Link>
-            </div>
-          </nav>
-        </motion.div>
+                </div>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.header>
   )
