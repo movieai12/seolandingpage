@@ -19,11 +19,11 @@ export function Header() {
   }, [])
 
   const menuItems = [
-    { name: 'Ana Sayfa', href: '#home' },
-    { name: 'Hizmetler', href: '#services' },
-    { name: 'Hakkımızda', href: '#about' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'İletişim', href: '#contact' }
+    { name: 'Ana Sayfa', href: '/' },
+    { name: 'Hizmetler', href: '/hizmetler' },
+    { name: 'Hakkımızda', href: '/hakkimizda' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'İletişim', href: '/iletisim' }
   ]
 
   return (
@@ -38,18 +38,20 @@ export function Header() {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <Logo />
+          <Link href="/">
+            <Logo />
+          </Link>
 
           <nav className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item, index) => (
-              <motion.a
-                key={index}
-                href={item.href}
-                whileHover={{ scale: 1.05 }}
-                className="text-gray-700 hover:text-blue-900 font-medium transition-colors duration-300"
-              >
-                {item.name}
-              </motion.a>
+              <motion.div key={index} whileHover={{ scale: 1.05 }}>
+                <Link
+                  href={item.href}
+                  className="text-gray-700 hover:text-blue-900 font-medium transition-colors duration-300"
+                >
+                  {item.name}
+                </Link>
+              </motion.div>
             ))}
           </nav>
 
@@ -64,13 +66,14 @@ export function Header() {
                 <span>info@dijitalfiir.com</span>
               </div>
             </div>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-300"
-            >
-              Ücretsiz Analiz
-            </motion.button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                href="/seo-analizi"
+                className="bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-300"
+              >
+                Ücretsiz Analiz
+              </Link>
+            </motion.div>
           </div>
 
           <button
@@ -92,19 +95,23 @@ export function Header() {
         >
           <nav className="py-4 space-y-4">
             {menuItems.map((item, index) => (
-              <a
+              <Link
                 key={index}
                 href={item.href}
                 className="block px-4 py-2 text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <div className="px-4 pt-4 border-t border-gray-200">
-              <button className="w-full bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-300">
+              <Link
+                href="/seo-analizi"
+                className="block w-full bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-300 text-center"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Ücretsiz Analiz
-              </button>
+              </Link>
             </div>
           </nav>
         </motion.div>

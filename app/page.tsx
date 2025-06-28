@@ -20,10 +20,6 @@ const RisingGraph = dynamic(() => import('@/components/RisingGraph'), {
   loading: () => <div className="h-96 bg-blue-50 animate-pulse" />
 })
 
-const Services = dynamic(() => import('@/components/Services'), {
-  loading: () => <div className="h-96 bg-white animate-pulse" />
-})
-
 const Testimonials = dynamic(() => import('@/components/Testimonials'), {
   loading: () => <div className="h-96 bg-blue-50 animate-pulse" />
 })
@@ -33,14 +29,6 @@ const Pricing = dynamic(() => import('@/components/Pricing'), {
 })
 
 const SEODemo = dynamic(() => import('@/components/SEODemo'), {
-  loading: () => <div className="h-96 bg-gray-50 animate-pulse" />
-})
-
-const Blog = dynamic(() => import('@/components/Blog'), {
-  loading: () => <div className="h-96 bg-white animate-pulse" />
-})
-
-const Contact = dynamic(() => import('@/components/Contact'), {
   loading: () => <div className="h-96 bg-gray-50 animate-pulse" />
 })
 
@@ -58,12 +46,9 @@ export default function Home() {
       <GlobeSection />
       <GoogleRanking />
       <RisingGraph />
-      <Services />
       <Testimonials />
       <Pricing />
       <SEODemo />
-      <Blog />
-      <Contact />
       <Footer />
     </main>
   )

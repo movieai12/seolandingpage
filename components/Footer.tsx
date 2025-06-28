@@ -13,6 +13,7 @@ import {
   ArrowUp
 } from 'lucide-react'
 import { Logo } from './Logo'
+import Link from 'next/link'
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -42,7 +43,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3 text-gray-300">
                 <MapPin className="w-5 h-5 text-blue-400" />
-                <span>Maslak, İstanbul</span>
+                <span>Beylikdüzü, İstanbul</span>
               </div>
             </div>
           </div>
@@ -51,47 +52,47 @@ export default function Footer() {
             <h3 className="text-xl font-semibold mb-6">Hizmetlerimiz</h3>
             <ul className="space-y-3">
               {[
-                'Teknik SEO',
-                'İçerik SEO',
-                'Link Building',
-                'Yerel SEO',
-                'E-ticaret SEO',
-                'Uluslararası SEO',
-                'SEO Danışmanlığı',
-                'SEO Eğitimi'
+                { name: 'Teknik SEO', href: '/hizmetler' },
+                { name: 'İçerik SEO', href: '/hizmetler' },
+                { name: 'Link Building', href: '/hizmetler' },
+                { name: 'Yerel SEO', href: '/hizmetler' },
+                { name: 'E-ticaret SEO', href: '/hizmetler' },
+                { name: 'Uluslararası SEO', href: '/hizmetler' },
+                { name: 'SEO Danışmanlığı', href: '/hizmetler' },
+                { name: 'SEO Eğitimi', href: '/hizmetler' }
               ].map((service, index) => (
                 <li key={index}>
-                  <a 
-                    href="#" 
+                  <Link 
+                    href={service.href}
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-300"
                   >
-                    {service}
-                  </a>
+                    {service.name}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="text-xl font-semibold mb-6">Kaynaklar</h3>
+            <h3 className="text-xl font-semibold mb-6">Sayfalar</h3>
             <ul className="space-y-3">
               {[
-                'SEO Blog',
-                'SEO Rehberleri',
-                'Case Studies',
-                'SEO Araçları',
-                'Webinarlar',
-                'E-kitaplar',
-                'SEO Sözlüğü',
-                'SSS'
-              ].map((resource, index) => (
+                { name: 'Ana Sayfa', href: '/' },
+                { name: 'Hakkımızda', href: '/hakkimizda' },
+                { name: 'Hizmetlerimiz', href: '/hizmetler' },
+                { name: 'Blog', href: '/blog' },
+                { name: 'İletişim', href: '/iletisim' },
+                { name: 'SEO Analizi', href: '/seo-analizi' },
+                { name: 'Gizlilik Politikası', href: '/gizlilik-politikasi' },
+                { name: 'Kullanım Şartları', href: '/kullanim-sartlari' }
+              ].map((page, index) => (
                 <li key={index}>
-                  <a 
-                    href="#" 
+                  <Link 
+                    href={page.href}
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-300"
                   >
-                    {resource}
-                  </a>
+                    {page.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -149,15 +150,15 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex flex-wrap gap-6 text-sm text-gray-400">
               <span>© 2024 dijitalfiir. Tüm hakları saklıdır.</span>
-              <a href="#" className="hover:text-blue-400 transition-colors">
+              <Link href="/gizlilik-politikasi" className="hover:text-blue-400 transition-colors">
                 Gizlilik Politikası
-              </a>
-              <a href="#" className="hover:text-blue-400 transition-colors">
+              </Link>
+              <Link href="/kullanim-sartlari" className="hover:text-blue-400 transition-colors">
                 Kullanım Şartları
-              </a>
-              <a href="#" className="hover:text-blue-400 transition-colors">
+              </Link>
+              <Link href="/cerez-politikasi" className="hover:text-blue-400 transition-colors">
                 Çerez Politikası
-              </a>
+              </Link>
             </div>
 
             <motion.button
