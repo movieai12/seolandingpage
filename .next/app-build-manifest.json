@@ -1,0 +1,123 @@
+{
+  "pages": {
+    "/_not-found": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/app/_not-found-003b80426e47a845.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/css/87ca95cfabf49e19.css",
+      "static/chunks/app/layout-eff03076d671f62c.js"
+    ],
+    "/araclar/da-pa-checker/page": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/721-bf6b12b785f46ad1.js",
+      "static/chunks/232-6360a9a9b1446d7f.js",
+      "static/chunks/app/araclar/da-pa-checker/page-f602a754bc54bbdc.js"
+    ],
+    "/araclar/ai-seo-analizi/page": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/721-bf6b12b785f46ad1.js",
+      "static/chunks/232-6360a9a9b1446d7f.js",
+      "static/chunks/app/araclar/ai-seo-analizi/page-47009437eb497a93.js"
+    ],
+    "/araclar/sira-bulucu/page": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/721-bf6b12b785f46ad1.js",
+      "static/chunks/232-6360a9a9b1446d7f.js",
+      "static/chunks/app/araclar/sira-bulucu/page-727c01f32d68745a.js"
+    ],
+    "/araclar/teknik-seo-analizi/page": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/721-bf6b12b785f46ad1.js",
+      "static/chunks/232-6360a9a9b1446d7f.js",
+      "static/chunks/app/araclar/teknik-seo-analizi/page-c245accfe8970ad8.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/721-bf6b12b785f46ad1.js",
+      "static/chunks/24-9e211d489065fce3.js",
+      "static/chunks/232-6360a9a9b1446d7f.js",
+      "static/chunks/426-cf1651d0e09da8e8.js",
+      "static/chunks/app/page-063f03c9f2c2df8d.js"
+    ],
+    "/blog/page": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/721-bf6b12b785f46ad1.js",
+      "static/chunks/232-6360a9a9b1446d7f.js",
+      "static/chunks/app/blog/page-e3178076a6baf973.js"
+    ],
+    "/fiyatlar/page": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/721-bf6b12b785f46ad1.js",
+      "static/chunks/232-6360a9a9b1446d7f.js",
+      "static/chunks/385-4fb98a6e68a756f8.js",
+      "static/chunks/app/fiyatlar/page-923783c1dbcc9426.js"
+    ],
+    "/hizmetler/page": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/721-bf6b12b785f46ad1.js",
+      "static/chunks/232-6360a9a9b1446d7f.js",
+      "static/chunks/app/hizmetler/page-9b5c8bf529e342ca.js"
+    ],
+    "/iletisim/page": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/721-bf6b12b785f46ad1.js",
+      "static/chunks/232-6360a9a9b1446d7f.js",
+      "static/chunks/385-4fb98a6e68a756f8.js",
+      "static/chunks/app/iletisim/page-0a742a9fab265622.js"
+    ],
+    "/seo-analizi/page": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/721-bf6b12b785f46ad1.js",
+      "static/chunks/232-6360a9a9b1446d7f.js",
+      "static/chunks/426-cf1651d0e09da8e8.js",
+      "static/chunks/app/seo-analizi/page-f242f27a2cd7532a.js"
+    ],
+    "/hakkimizda/page": [
+      "static/chunks/webpack-108924154b3a0b7e.js",
+      "static/chunks/fd9d1056-5bc9bee3f3b66a44.js",
+      "static/chunks/938-832829ee62d30f5b.js",
+      "static/chunks/main-app-2b0085616853353b.js",
+      "static/chunks/721-bf6b12b785f46ad1.js",
+      "static/chunks/232-6360a9a9b1446d7f.js",
+      "static/chunks/app/hakkimizda/page-05f1aedc2a17b134.js"
+    ]
+  }
+}
