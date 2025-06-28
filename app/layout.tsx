@@ -89,8 +89,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://images.pexels.com" />
         <JsonLd />
       </head>
-      <body className={`${inter.className} antialiased`}>
-        {children}
+      <body className={`${inter.className} antialiased bg-white text-gray-900`}>
+        <div id="__next">
+          {children}
+        </div>
       </body>
     </html>
   )
