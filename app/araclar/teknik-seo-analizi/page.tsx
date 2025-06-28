@@ -1,29 +1,41 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/Header'
 import { Zap, Globe, Smartphone, Clock, Shield, Search, AlertTriangle, CheckCircle, XCircle } from 'lucide-react'
 import dynamic from 'next/dynamic'
+import { useSearchParams } from 'next/navigation'
 
 const Footer = dynamic(() => import('@/components/Footer'), {
   loading: () => <div className="h-64 bg-gray-900 animate-pulse" />
 })
 
 export default function TeknikSEOAnaliziPage() {
+  const searchParams = useSearchParams()
   const [url, setUrl] = useState('')
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [results, setResults] = useState<any>(null)
 
-  const handleAnalyze = () => {
-    if (!url.trim()) return
+  useEffect(() => {
+    const urlParam = searchParams.get('url')
+    if (urlParam) {
+      setUrl(decodeURIComponent(urlParam))
+      // Auto-start analysis if URL is provided
+      handleAnalyze(decodeURIComponent(urlParam))
+    }
+  }, [searchParams])
+
+  const handleAnalyze = (targetUrl?: string) => {
+    const analyzeUrl = targetUrl || url
+    if (!analyzeUrl.trim()) return
     
     setIsAnalyzing(true)
     
     // Simulate comprehensive technical SEO analysis
     setTimeout(() => {
       setResults({
-        domain: url.replace(/^https?:\/\//, '').replace(/\/$/, ''),
+        domain: analyzeUrl.replace(/^https?:\/\//, '').replace(/\/$/, ''),
         overallScore: Math.floor(Math.random() * 30) + 70,
         categories: {
           performance: {
@@ -154,7 +166,7 @@ export default function TeknikSEOAnaliziPage() {
                   </div>
 
                   <button
-                    onClick={handleAnalyze}
+                    onClick={() => handleAnalyze()}
                     disabled={isAnalyzing || !url.trim()}
                     className="w-full bg-purple-600 text-white py-4 rounded-lg font-semibold text-lg hover:bg-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >

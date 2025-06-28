@@ -1,10 +1,27 @@
 'use client'
 
-import React from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
-import { Bot, TrendingUp, Zap, ArrowRight, Play, BarChart3, Target, Rocket } from "lucide-react"
+import { Bot, TrendingUp, Zap, ArrowRight, Play, BarChart3, Target, Rocket, Search, Globe } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export function Hero() {
+  const [websiteUrl, setWebsiteUrl] = useState('')
+  const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const router = useRouter()
+
+  const handleAnalyze = () => {
+    if (!websiteUrl.trim()) return
+    
+    setIsAnalyzing(true)
+    
+    // Simulate brief loading then redirect to technical SEO analysis
+    setTimeout(() => {
+      const encodedUrl = encodeURIComponent(websiteUrl)
+      router.push(`/araclar/teknik-seo-analizi?url=${encodedUrl}`)
+    }, 1500)
+  }
+
   return (
     <section
       id="home"
@@ -54,15 +71,81 @@ export function Hero() {
                 destekli SEO çözümlerimizle rakiplerinizi geride bırakın.
               </p>
 
-              <div className="flex items-center gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-blue-100">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium text-gray-700">Canlı:</span>
+              {/* Interactive SEO Analyzer */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-blue-100"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-gray-700">Canlı SEO Analizi:</span>
+                  </div>
+                  <span className="text-sm text-gray-600">
+                    Son 24 saatte <strong className="text-blue-900">127 site</strong> analiz edildi
+                  </span>
                 </div>
-                <span className="text-sm text-gray-600">
-                  Son 24 saatte <strong className="text-blue-900">127 site</strong> analiz edildi
-                </span>
-              </div>
+
+                <div className="space-y-4">
+                  <div className="relative">
+                    <input
+                      type="url"
+                      value={websiteUrl}
+                      onChange={(e) => setWebsiteUrl(e.target.value)}
+                      placeholder="https://siteniz.com"
+                      className="w-full px-4 py-4 pr-12 border-2 border-gray-200 rounded-xl focus:border-blue-600 focus:outline-none text-lg bg-white"
+                      disabled={isAnalyzing}
+                    />
+                    <Globe className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" />
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={handleAnalyze}
+                    disabled={isAnalyzing || !websiteUrl.trim()}
+                    className="w-full bg-gradient-to-r from-blue-900 to-blue-800 text-white py-4 rounded-xl font-semibold text-lg hover:from-blue-800 hover:to-blue-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg"
+                  >
+                    {isAnalyzing ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Analiz Ediliyor...
+                      </>
+                    ) : (
+                      <>
+                        <Search className="w-5 h-5" />
+                        Ücretsiz SEO Analizi Başlat
+                      </>
+                    )}
+                  </motion.button>
+
+                  <div className="grid grid-cols-3 gap-3 text-center text-xs text-gray-600">
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mb-1">
+                        <Zap className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <span className="font-medium">30 sn</span>
+                      <span>Hızlı Analiz</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mb-1">
+                        <BarChart3 className="w-4 h-4 text-green-600" />
+                      </div>
+                      <span className="font-medium">50+</span>
+                      <span>SEO Faktörü</span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mb-1">
+                        <Target className="w-4 h-4 text-purple-600" />
+                      </div>
+                      <span className="font-medium">100%</span>
+                      <span>Ücretsiz</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
 
             <motion.div
@@ -76,8 +159,8 @@ export function Hero() {
                 whileTap={{ scale: 0.95 }}
                 className="group bg-gradient-to-r from-blue-900 to-blue-800 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-blue-800 hover:to-blue-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-xl"
               >
-                <Zap className="w-5 h-5" />
-                Ücretsiz SEO Analizi Al
+                <Rocket className="w-5 h-5" />
+                Hemen Başlayın
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
 
