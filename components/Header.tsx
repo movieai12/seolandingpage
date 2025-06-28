@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Phone, Mail, ChevronDown, Search, BarChart3, Link, Zap } from 'lucide-react'
+import { Menu, X, Phone, Mail, ChevronDown, Search, BarChart3, ExternalLink, Zap } from 'lucide-react'
 import { Logo } from './Logo'
 import Link from 'next/link'
 
@@ -29,7 +29,7 @@ export function Header() {
         { name: 'DA PA Checker', href: '/araclar/da-pa-checker', icon: BarChart3, description: 'Domain ve Page Authority kontrolü' },
         { name: 'Sıra Bulucu', href: '/araclar/sira-bulucu', icon: Search, description: 'Anahtar kelime sıralama kontrolü' },
         { name: 'Teknik SEO Analizi', href: '/araclar/teknik-seo-analizi', icon: Zap, description: 'Kapsamlı teknik SEO taraması' },
-        { name: 'AI SEO Analizi', href: '/araclar/ai-seo-analizi', icon: Link, description: 'Yapay zeka destekli SEO analizi' }
+        { name: 'AI SEO Analizi', href: '/araclar/ai-seo-analizi', icon: ExternalLink, description: 'Yapay zeka destekli SEO analizi' }
       ]
     },
     { name: 'Fiyatlar', href: '/fiyatlar' },
