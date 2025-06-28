@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    optimizeCss: true,
-  },
   images: {
     domains: ['images.pexels.com'],
     formats: ['image/webp', 'image/avif'],
