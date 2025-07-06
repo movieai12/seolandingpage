@@ -51,7 +51,7 @@ export class SerpAPIClient {
     snippet: string | null
   } {
     const normalizedTarget = targetDomain.replace(/^(https?:\/\/)?(www\.)?/, '').toLowerCase()
-    
+
     for (const result of results) {
       if (result.link) {
         const resultDomain = this.extractDomainFromUrl(result.link).toLowerCase()
@@ -74,8 +74,8 @@ export class SerpAPIClient {
     }
   }
 
-  getCompetitors(results: any[], limit: number = 10) {
-    return results.slice(0, limit).map(result => ({
+  getCompetitors(results: any[]) {
+    return results.map(result => ({
       domain: this.extractDomainFromUrl(result.link),
       position: result.position,
       url: result.link,

@@ -1,0 +1,25 @@
+{
+  "pages": {
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/araclar/sira-bulucu/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/araclar/sira-bulucu/page.js"
+    ],
+    "/araclar/teknik-seo-analizi/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/araclar/teknik-seo-analizi/page.js"
+    ],
+    "/araclar/da-pa-checker/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/araclar/da-pa-checker/page.js"
+    ]
+  }
+}

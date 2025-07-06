@@ -20,7 +20,7 @@ export default function SiraBulucuPage() {
 
   const handleSearch = () => {
     if (!keyword.trim() || !domain.trim()) return
-    
+
     rankCheck.mutate({
       keyword: keyword.trim(),
       domain: domain.trim(),
@@ -56,7 +56,7 @@ export default function SiraBulucuPage() {
   return (
     <main className="min-h-screen">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-green-50 via-white to-blue-50">
         <div className="container mx-auto px-4">
@@ -69,7 +69,7 @@ export default function SiraBulucuPage() {
               <span className="text-green-600">Sıra</span> Bulucu
             </h1>
             <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed mb-8">
-              Anahtar kelimelerinizin Google'da kaçıncı sırada olduğunu öğrenin. 
+              Anahtar kelimelerinizin Google'da kaçıncı sırada olduğunu öğrenin.
               Rakiplerinizle karşılaştırın ve SEO stratejinizi geliştirin.
             </p>
           </div>
@@ -92,7 +92,7 @@ export default function SiraBulucuPage() {
                   <Search className="w-8 h-8 text-green-600" />
                   Sıralama Kontrolü
                 </h3>
-                
+
                 <div className="space-y-6">
                   <div>
                     <label htmlFor="keyword" className="block text-sm font-medium text-gray-700 mb-2">
@@ -232,12 +232,10 @@ export default function SiraBulucuPage() {
               {rankCheck.data ? (
                 <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      rankCheck.data.position && rankCheck.data.position <= 10 ? 'bg-green-100' : 'bg-red-100'
-                    }`}>
-                      <Search className={`w-5 h-5 ${
-                        rankCheck.data.position && rankCheck.data.position <= 10 ? 'text-green-600' : 'text-red-600'
-                      }`} />
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${rankCheck.data.position && rankCheck.data.position <= 10 ? 'bg-green-100' : 'bg-red-100'
+                      }`}>
+                      <Search className={`w-5 h-5 ${rankCheck.data.position && rankCheck.data.position <= 10 ? 'text-green-600' : 'text-red-600'
+                        }`} />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900">Sıralama Sonucu</h3>
                   </div>
@@ -251,9 +249,8 @@ export default function SiraBulucuPage() {
                       <div className="text-sm text-gray-500 mt-2">
                         "{rankCheck.data.keyword}" için {rankCheck.data.domain}
                       </div>
-                      <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium mt-2 ${
-                        rankCheck.data.position ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                      }`}>
+                      <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium mt-2 ${rankCheck.data.position ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                        }`}>
                         {getPositionLabel(rankCheck.data.position)}
                       </div>
                     </div>
@@ -263,9 +260,9 @@ export default function SiraBulucuPage() {
                         <h4 className="font-semibold text-blue-900 mb-2">Bulunan Sayfa</h4>
                         <div className="space-y-2">
                           <div className="font-medium text-blue-800">{rankCheck.data.title}</div>
-                          <a 
-                            href={rankCheck.data.url} 
-                            target="_blank" 
+                          <a
+                            href={rankCheck.data.url}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-1"
                           >
@@ -301,9 +298,9 @@ export default function SiraBulucuPage() {
                     </div>
 
                     <div className="p-6 bg-gray-50 rounded-lg">
-                      <h4 className="font-semibold text-gray-900 mb-4">İlk 10 Rakip</h4>
+                      <h4 className="font-semibold text-gray-900 mb-4">İlk 100 Rakip</h4>
                       <div className="space-y-3 max-h-64 overflow-y-auto">
-                        {rankCheck.data.competitors.slice(0, 10).map((competitor, index) => (
+                        {rankCheck.data.competitors.slice(0, 100).map((competitor, index) => (
                           <div key={index} className="flex items-center justify-between p-3 bg-white rounded-lg">
                             <div className="flex-1 min-w-0">
                               <div className="font-medium text-gray-900 truncate">{competitor.domain}</div>
@@ -313,9 +310,9 @@ export default function SiraBulucuPage() {
                               <span className={`font-bold ${getPositionColor(competitor.position)}`}>
                                 #{competitor.position}
                               </span>
-                              <a 
-                                href={competitor.url} 
-                                target="_blank" 
+                              <a
+                                href={competitor.url}
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-gray-400 hover:text-blue-600"
                               >
@@ -340,8 +337,8 @@ export default function SiraBulucuPage() {
                     </div>
 
                     <div className="text-xs text-gray-500 text-center">
-                      Arama tarihi: {new Date(rankCheck.data.searchDate).toLocaleString('tr-TR')} • 
-                      Konum: {rankCheck.data.location} • 
+                      Arama tarihi: {new Date(rankCheck.data.searchDate).toLocaleString('tr-TR')} •
+                      Konum: {rankCheck.data.location} •
                       Cihaz: {device === 'desktop' ? 'Masaüstü' : 'Mobil'}
                     </div>
                   </div>
@@ -354,7 +351,7 @@ export default function SiraBulucuPage() {
                       Sıralama Kontrolünü Başlatın
                     </h3>
                     <p className="text-gray-600 max-w-sm mx-auto">
-                      Anahtar kelimenizi ve domain adresinizi girin, 
+                      Anahtar kelimenizi ve domain adresinizi girin,
                       Google'daki sıralamanızı öğrenin.
                     </p>
                   </div>
