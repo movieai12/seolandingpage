@@ -1,6 +1,5 @@
 {
   "/araclar/sira-bulucu/page": "app/araclar/sira-bulucu/page.js",
-  "/araclar/da-pa-checker/page": "app/araclar/da-pa-checker/page.js",
   "/araclar/teknik-seo-analizi/page": "app/araclar/teknik-seo-analizi/page.js",
-  "/api/rank-check/route": "app/api/rank-check/route.js"
+  "/araclar/da-pa-checker/page": "app/araclar/da-pa-checker/page.js"
 }

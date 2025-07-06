@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/Header'
-import { Search, TrendingUp, MapPin, Globe, Target, BarChart3, Loader2, AlertCircle, CheckCircle, ExternalLink } from 'lucide-react'
+import { Search, TrendingUp, MapPin, Globe, Target, BarChart3, Loader2, AlertCircle, CheckCircle, ExternalLink, Crown, Trophy, Medal } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { useRankCheck } from '@/hooks/use-rank-check'
 
@@ -53,6 +53,19 @@ export default function SiraBulucuPage() {
     return 'Zayıf'
   }
 
+  const getPositionIcon = (position: number) => {
+    if (position === 1) return <Crown className="w-4 h-4 text-yellow-500" />
+    if (position === 2) return <Trophy className="w-4 h-4 text-gray-400" />
+    if (position === 3) return <Medal className="w-4 h-4 text-orange-500" />
+    return null
+  }
+
+  const isTargetDomain = (domain: string, targetDomain: string) => {
+    const normalizedDomain = domain.toLowerCase().replace(/^www\./, '')
+    const normalizedTarget = targetDomain.toLowerCase().replace(/^www\./, '')
+    return normalizedDomain === normalizedTarget || normalizedDomain.includes(normalizedTarget)
+  }
+
   return (
     <main className="min-h-screen">
       <Header />
@@ -79,13 +92,13 @@ export default function SiraBulucuPage() {
       {/* Tool Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             {/* Input Section */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="mb-8"
             >
               <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
@@ -93,7 +106,7 @@ export default function SiraBulucuPage() {
                   Sıralama Kontrolü
                 </h3>
 
-                <div className="space-y-6">
+                <div className="grid lg:grid-cols-4 gap-6">
                   <div>
                     <label htmlFor="keyword" className="block text-sm font-medium text-gray-700 mb-2">
                       Anahtar Kelime
@@ -105,10 +118,10 @@ export default function SiraBulucuPage() {
                         value={keyword}
                         onChange={(e) => setKeyword(e.target.value)}
                         placeholder="seo ajansı"
-                        className="w-full px-4 py-4 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none text-lg"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none"
                         disabled={rankCheck.isPending}
                       />
-                      <Target className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" />
+                      <Target className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                     </div>
                   </div>
 
@@ -123,55 +136,55 @@ export default function SiraBulucuPage() {
                         value={domain}
                         onChange={(e) => setDomain(e.target.value)}
                         placeholder="example.com"
-                        className="w-full px-4 py-4 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none text-lg"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none"
                         disabled={rankCheck.isPending}
                       />
-                      <Globe className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" />
+                      <Globe className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
-                        Konum
-                      </label>
-                      <div className="relative">
-                        <select
-                          id="location"
-                          value={location}
-                          onChange={(e) => setLocation(e.target.value)}
-                          className="w-full px-4 py-4 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none text-lg appearance-none"
-                          disabled={rankCheck.isPending}
-                        >
-                          <option value="Turkey">Türkiye</option>
-                          <option value="Istanbul, Turkey">İstanbul</option>
-                          <option value="Ankara, Turkey">Ankara</option>
-                          <option value="Izmir, Turkey">İzmir</option>
-                          <option value="United States">ABD</option>
-                          <option value="United Kingdom">İngiltere</option>
-                          <option value="Germany">Almanya</option>
-                        </select>
-                        <MapPin className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400 pointer-events-none" />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label htmlFor="device" className="block text-sm font-medium text-gray-700 mb-2">
-                        Cihaz
-                      </label>
+                  <div>
+                    <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+                      Konum
+                    </label>
+                    <div className="relative">
                       <select
-                        id="device"
-                        value={device}
-                        onChange={(e) => setDevice(e.target.value as 'desktop' | 'mobile')}
-                        className="w-full px-4 py-4 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none text-lg appearance-none"
+                        id="location"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none appearance-none"
                         disabled={rankCheck.isPending}
                       >
-                        <option value="desktop">Masaüstü</option>
-                        <option value="mobile">Mobil</option>
+                        <option value="Turkey">Türkiye</option>
+                        <option value="Istanbul, Turkey">İstanbul</option>
+                        <option value="Ankara, Turkey">Ankara</option>
+                        <option value="Izmir, Turkey">İzmir</option>
+                        <option value="United States">ABD</option>
+                        <option value="United Kingdom">İngiltere</option>
+                        <option value="Germany">Almanya</option>
                       </select>
+                      <MapPin className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
                     </div>
                   </div>
 
+                  <div>
+                    <label htmlFor="device" className="block text-sm font-medium text-gray-700 mb-2">
+                      Cihaz
+                    </label>
+                    <select
+                      id="device"
+                      value={device}
+                      onChange={(e) => setDevice(e.target.value as 'desktop' | 'mobile')}
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-green-600 focus:outline-none appearance-none"
+                      disabled={rankCheck.isPending}
+                    >
+                      <option value="desktop">Masaüstü</option>
+                      <option value="mobile">Mobil</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="mt-6">
                   <button
                     onClick={handleSearch}
                     disabled={rankCheck.isPending || !keyword.trim() || !domain.trim()}
@@ -189,59 +202,44 @@ export default function SiraBulucuPage() {
                       </>
                     )}
                   </button>
-
-                  {rankCheck.error && (
-                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                      <div className="flex items-center gap-2 text-red-800">
-                        <AlertCircle className="w-5 h-5" />
-                        <span className="font-medium">Hata:</span>
-                      </div>
-                      <p className="text-red-700 mt-1">
-                        {rankCheck.error.message || 'Bir hata oluştu. Lütfen tekrar deneyin.'}
-                      </p>
-                    </div>
-                  )}
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-gray-200">
-                  <div className="grid grid-cols-3 gap-4 text-center text-sm text-gray-600">
-                    <div>
-                      <div className="font-semibold text-gray-900">Gerçek Zamanlı</div>
-                      <div>SerpAPI</div>
+                {rankCheck.error && (
+                  <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <div className="flex items-center gap-2 text-red-800">
+                      <AlertCircle className="w-5 h-5" />
+                      <span className="font-medium">Hata:</span>
                     </div>
-                    <div>
-                      <div className="font-semibold text-gray-900">100+</div>
-                      <div>Sonuç Taraması</div>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900">Ücretsiz</div>
-                      <div>Kullanım</div>
-                    </div>
+                    <p className="text-red-700 mt-1">
+                      {rankCheck.error.message || 'Bir hata oluştu. Lütfen tekrar deneyin.'}
+                    </p>
                   </div>
-                </div>
+                )}
               </div>
             </motion.div>
 
             {/* Results Section */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-6"
-            >
-              {rankCheck.data ? (
-                <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${rankCheck.data.position && rankCheck.data.position <= 10 ? 'bg-green-100' : 'bg-red-100'
-                      }`}>
-                      <Search className={`w-5 h-5 ${rankCheck.data.position && rankCheck.data.position <= 10 ? 'text-green-600' : 'text-red-600'
-                        }`} />
+            {rankCheck.data && (
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="space-y-8"
+              >
+                {/* Summary Cards */}
+                <div className="grid lg:grid-cols-2 gap-8">
+                  {/* Main Result Card */}
+                  <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${rankCheck.data.position && rankCheck.data.position <= 10 ? 'bg-green-100' : 'bg-red-100'
+                        }`}>
+                        <Search className={`w-5 h-5 ${rankCheck.data.position && rankCheck.data.position <= 10 ? 'text-green-600' : 'text-red-600'
+                          }`} />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">Sıralama Sonucu</h3>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">Sıralama Sonucu</h3>
-                  </div>
 
-                  <div className="space-y-6">
-                    <div className="text-center p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl">
+                    <div className="text-center p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl mb-6">
                       <div className={`text-6xl font-bold mb-2 ${getPositionColor(rankCheck.data.position)}`}>
                         {rankCheck.data.position ? `#${rankCheck.data.position}` : 'Yok'}
                       </div>
@@ -275,52 +273,30 @@ export default function SiraBulucuPage() {
                         </div>
                       </div>
                     )}
+                  </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="p-4 bg-blue-50 rounded-lg">
+                  {/* Metrics Card */}
+                  <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Anahtar Kelime Metrikleri</h3>
+
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="p-4 bg-blue-50 rounded-lg text-center">
                         <div className="text-2xl font-bold text-blue-900">{rankCheck.data.searchVolume.toLocaleString()}</div>
                         <div className="text-blue-700 text-sm">Aylık Arama</div>
                       </div>
-                      <div className="p-4 bg-purple-50 rounded-lg">
+                      <div className="p-4 bg-purple-50 rounded-lg text-center">
                         <div className="text-2xl font-bold text-purple-900">{rankCheck.data.difficulty}</div>
                         <div className="text-purple-700 text-sm">Zorluk Skoru</div>
                       </div>
-                      <div className="p-4 bg-green-50 rounded-lg">
+                      <div className="p-4 bg-green-50 rounded-lg text-center">
                         <div className="text-2xl font-bold text-green-900">₺{rankCheck.data.cpc}</div>
                         <div className="text-green-700 text-sm">CPC</div>
                       </div>
-                      <div className="p-4 bg-orange-50 rounded-lg">
+                      <div className="p-4 bg-orange-50 rounded-lg text-center">
                         <div className="text-2xl font-bold text-orange-900">
                           {rankCheck.data.totalResults.toLocaleString()}
                         </div>
                         <div className="text-orange-700 text-sm">Toplam Sonuç</div>
-                      </div>
-                    </div>
-
-                    <div className="p-6 bg-gray-50 rounded-lg">
-                      <h4 className="font-semibold text-gray-900 mb-4">İlk 100 Rakip</h4>
-                      <div className="space-y-3 max-h-64 overflow-y-auto">
-                        {rankCheck.data.competitors.slice(0, 100).map((competitor, index) => (
-                          <div key={index} className="flex items-center justify-between p-3 bg-white rounded-lg">
-                            <div className="flex-1 min-w-0">
-                              <div className="font-medium text-gray-900 truncate">{competitor.domain}</div>
-                              <div className="text-sm text-gray-600 truncate">{competitor.title}</div>
-                            </div>
-                            <div className="flex items-center gap-2 ml-4">
-                              <span className={`font-bold ${getPositionColor(competitor.position)}`}>
-                                #{competitor.position}
-                              </span>
-                              <a
-                                href={competitor.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-gray-400 hover:text-blue-600"
-                              >
-                                <ExternalLink className="w-4 h-4" />
-                              </a>
-                            </div>
-                          </div>
-                        ))}
                       </div>
                     </div>
 
@@ -335,29 +311,100 @@ export default function SiraBulucuPage() {
                         <li>• İç linkleme stratejinizi geliştirin</li>
                       </ul>
                     </div>
+                  </div>
+                </div>
 
-                    <div className="text-xs text-gray-500 text-center">
-                      Arama tarihi: {new Date(rankCheck.data.searchDate).toLocaleString('tr-TR')} •
-                      Konum: {rankCheck.data.location} •
-                      Cihaz: {device === 'desktop' ? 'Masaüstü' : 'Mobil'}
+                {/* Competitors Table */}
+                <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-2xl font-bold text-gray-900">Google İlk 100 Sonuç</h3>
+                    <div className="text-sm text-gray-500">
+                      Arama tarihi: {new Date(rankCheck.data.searchDate).toLocaleString('tr-TR')}
                     </div>
                   </div>
-                </div>
-              ) : (
-                <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
-                  <div className="text-center py-12">
-                    <Search className="w-24 h-24 text-green-100 mx-auto mb-6" />
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                      Sıralama Kontrolünü Başlatın
-                    </h3>
-                    <p className="text-gray-600 max-w-sm mx-auto">
-                      Anahtar kelimenizi ve domain adresinizi girin,
-                      Google'daki sıralamanızı öğrenin.
-                    </p>
+
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b border-gray-200">
+                          <th className="text-left py-3 px-4 font-semibold text-gray-900">Sıra</th>
+                          <th className="text-left py-3 px-4 font-semibold text-gray-900">Domain</th>
+                          <th className="text-left py-3 px-4 font-semibold text-gray-900">Başlık</th>
+                          <th className="text-center py-3 px-4 font-semibold text-gray-900">Link</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-100">
+                        {rankCheck.data.competitors.slice(0, 100).map((competitor, index) => {
+                          const isTarget = isTargetDomain(competitor.domain, domain)
+                          return (
+                            <tr
+                              key={index}
+                              className={`hover:bg-gray-50 transition-colors ${isTarget ? 'bg-green-50 border-l-4 border-green-500' : ''
+                                }`}
+                            >
+                              <td className="py-3 px-4">
+                                <div className="flex items-center gap-2">
+                                  <span className={`font-bold ${getPositionColor(competitor.position)}`}>
+                                    #{competitor.position}
+                                  </span>
+                                  {getPositionIcon(competitor.position)}
+                                  {isTarget && (
+                                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+                                      Sizin Siteniz
+                                    </span>
+                                  )}
+                                </div>
+                              </td>
+                              <td className="py-3 px-4">
+                                <div className={`font-medium ${isTarget ? 'text-green-900' : 'text-gray-900'}`}>
+                                  {competitor.domain}
+                                </div>
+                              </td>
+                              <td className="py-3 px-4">
+                                <div className={`text-sm ${isTarget ? 'text-green-800' : 'text-gray-600'} line-clamp-2`}>
+                                  {competitor.title}
+                                </div>
+                              </td>
+                              <td className="py-3 px-4 text-center">
+                                <a
+                                  href={competitor.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-600 hover:text-blue-800 transition-colors"
+                                >
+                                  <ExternalLink className="w-4 h-4 mx-auto" />
+                                </a>
+                              </td>
+                            </tr>
+                          )
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div className="mt-6 text-center text-sm text-gray-500">
+                    Konum: {rankCheck.data.location} •
+                    Cihaz: {device === 'desktop' ? 'Masaüstü' : 'Mobil'} •
+                    Toplam {rankCheck.data.competitors.length} sonuç gösteriliyor
                   </div>
                 </div>
-              )}
-            </motion.div>
+              </motion.div>
+            )}
+
+            {!rankCheck.data && !rankCheck.isPending && (
+              <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
+                <div className="text-center py-12">
+                  <Search className="w-24 h-24 text-green-100 mx-auto mb-6" />
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    Sıralama Kontrolünü Başlatın
+                  </h3>
+                  <p className="text-gray-600 max-w-sm mx-auto">
+                    Anahtar kelimenizi ve domain adresinizi girin,
+                    Google'daki sıralamanızı öğrenin.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
