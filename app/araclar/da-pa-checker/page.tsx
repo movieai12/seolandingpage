@@ -3,8 +3,10 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Header } from '@/components/Header'
-import { BarChart3, Search, TrendingUp, AlertCircle, CheckCircle, Globe, ExternalLink } from 'lucide-react'
+import { BarChart3, Search, TrendingUp, AlertCircle, CheckCircle, Globe, ExternalLink, Loader2 } from 'lucide-react'
 import dynamic from 'next/dynamic'
+import { useDAPACheck } from '@/hooks/use-da-pa-check'
+import { DAPAResponse } from '@/types/api'
 
 const Footer = dynamic(() => import('@/components/Footer'), {
   loading: () => <div className="h-64 bg-gray-900 animate-pulse" />
@@ -12,27 +14,11 @@ const Footer = dynamic(() => import('@/components/Footer'), {
 
 export default function DAPACheckerPage() {
   const [url, setUrl] = useState('')
-  const [isAnalyzing, setIsAnalyzing] = useState(false)
-  const [results, setResults] = useState<any>(null)
+  const daPaCheck = useDAPACheck()
 
   const handleAnalyze = () => {
     if (!url.trim()) return
-    
-    setIsAnalyzing(true)
-    
-    // Simulate API call
-    setTimeout(() => {
-      setResults({
-        domain: url.replace(/^https?:\/\//, '').replace(/\/$/, ''),
-        da: Math.floor(Math.random() * 40) + 30,
-        pa: Math.floor(Math.random() * 50) + 25,
-        backlinks: Math.floor(Math.random() * 10000) + 1000,
-        referringDomains: Math.floor(Math.random() * 500) + 100,
-        organicKeywords: Math.floor(Math.random() * 5000) + 500,
-        organicTraffic: Math.floor(Math.random() * 50000) + 5000
-      })
-      setIsAnalyzing(false)
-    }, 2000)
+    daPaCheck.mutate({ url: url.trim() })
   }
 
   const getScoreColor = (score: number) => {
@@ -45,6 +31,13 @@ export default function DAPACheckerPage() {
     if (score >= 70) return 'bg-green-500'
     if (score >= 40) return 'bg-yellow-500'
     return 'bg-red-500'
+  }
+
+  const getScoreLabel = (score: number) => {
+    if (score >= 70) return 'Mükemmel'
+    if (score >= 50) return 'İyi'
+    if (score >= 30) return 'Orta'
+    return 'Zayıf'
   }
 
   return (
@@ -100,6 +93,7 @@ export default function DAPACheckerPage() {
                         onChange={(e) => setUrl(e.target.value)}
                         placeholder="https://example.com"
                         className="w-full px-4 py-4 border-2 border-gray-200 rounded-lg focus:border-blue-900 focus:outline-none text-lg"
+                        disabled={daPaCheck.isPending}
                       />
                       <Globe className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" />
                     </div>
@@ -107,12 +101,12 @@ export default function DAPACheckerPage() {
 
                   <button
                     onClick={handleAnalyze}
-                    disabled={isAnalyzing || !url.trim()}
+                    disabled={daPaCheck.isPending || !url.trim()}
                     className="w-full bg-blue-900 text-white py-4 rounded-lg font-semibold text-lg hover:bg-blue-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    {isAnalyzing ? (
+                    {daPaCheck.isPending ? (
                       <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <Loader2 className="w-5 h-5 animate-spin" />
                         Analiz Ediliyor...
                       </>
                     ) : (
@@ -122,13 +116,25 @@ export default function DAPACheckerPage() {
                       </>
                     )}
                   </button>
+
+                  {daPaCheck.error && (
+                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                      <div className="flex items-center gap-2 text-red-800">
+                        <AlertCircle className="w-5 h-5" />
+                        <span className="font-medium">Hata:</span>
+                      </div>
+                      <p className="text-red-700 mt-1">
+                        {daPaCheck.error.message || 'Bir hata oluştu. Lütfen tekrar deneyin.'}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-gray-200">
                   <div className="grid grid-cols-2 gap-4 text-center text-sm text-gray-600">
                     <div>
-                      <div className="font-semibold text-gray-900">Anında</div>
-                      <div>Sonuç</div>
+                      <div className="font-semibold text-gray-900">Gerçek Zamanlı</div>
+                      <div>Moz API</div>
                     </div>
                     <div>
                       <div className="font-semibold text-gray-900">Ücretsiz</div>
@@ -164,7 +170,7 @@ export default function DAPACheckerPage() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6"
             >
-              {results ? (
+              {daPaCheck.data ? (
                 <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
                   <div className="flex items-center gap-3 mb-6">
                     <CheckCircle className="w-8 h-8 text-green-600" />
@@ -176,28 +182,30 @@ export default function DAPACheckerPage() {
                       <Globe className="w-6 h-6 text-blue-600" />
                       <div>
                         <div className="font-medium text-gray-900">Domain</div>
-                        <div className="text-blue-600">{results.domain}</div>
+                        <div className="text-blue-600">{daPaCheck.data.domain}</div>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
-                        <div className="text-4xl font-bold text-blue-900 mb-2">{results.da}</div>
+                        <div className="text-4xl font-bold text-blue-900 mb-2">{daPaCheck.data.da}</div>
                         <div className="text-blue-700 font-medium">Domain Authority</div>
+                        <div className="text-sm text-blue-600 mt-1">{getScoreLabel(daPaCheck.data.da)}</div>
                         <div className="w-full bg-blue-200 rounded-full h-2 mt-3">
                           <div 
-                            className={`h-2 rounded-full ${getScoreBg(results.da)}`}
-                            style={{ width: `${results.da}%` }}
+                            className={`h-2 rounded-full ${getScoreBg(daPaCheck.data.da)}`}
+                            style={{ width: `${daPaCheck.data.da}%` }}
                           />
                         </div>
                       </div>
                       <div className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
-                        <div className="text-4xl font-bold text-green-900 mb-2">{results.pa}</div>
+                        <div className="text-4xl font-bold text-green-900 mb-2">{daPaCheck.data.pa}</div>
                         <div className="text-green-700 font-medium">Page Authority</div>
+                        <div className="text-sm text-green-600 mt-1">{getScoreLabel(daPaCheck.data.pa)}</div>
                         <div className="w-full bg-green-200 rounded-full h-2 mt-3">
                           <div 
-                            className={`h-2 rounded-full ${getScoreBg(results.pa)}`}
-                            style={{ width: `${results.pa}%` }}
+                            className={`h-2 rounded-full ${getScoreBg(daPaCheck.data.pa)}`}
+                            style={{ width: `${daPaCheck.data.pa}%` }}
                           />
                         </div>
                       </div>
@@ -205,31 +213,36 @@ export default function DAPACheckerPage() {
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="p-4 bg-gray-50 rounded-lg">
-                        <div className="text-2xl font-bold text-gray-900">{results.backlinks.toLocaleString()}</div>
+                        <div className="text-2xl font-bold text-gray-900">{daPaCheck.data.backlinks.toLocaleString()}</div>
                         <div className="text-gray-600 text-sm">Toplam Backlink</div>
                       </div>
                       <div className="p-4 bg-gray-50 rounded-lg">
-                        <div className="text-2xl font-bold text-gray-900">{results.referringDomains.toLocaleString()}</div>
+                        <div className="text-2xl font-bold text-gray-900">{daPaCheck.data.referringDomains.toLocaleString()}</div>
                         <div className="text-gray-600 text-sm">Referring Domains</div>
                       </div>
                       <div className="p-4 bg-gray-50 rounded-lg">
-                        <div className="text-2xl font-bold text-gray-900">{results.organicKeywords.toLocaleString()}</div>
-                        <div className="text-gray-600 text-sm">Organik Anahtar Kelime</div>
+                        <div className="text-2xl font-bold text-gray-900">{daPaCheck.data.mozRank.toFixed(1)}</div>
+                        <div className="text-gray-600 text-sm">MozRank</div>
                       </div>
                       <div className="p-4 bg-gray-50 rounded-lg">
-                        <div className="text-2xl font-bold text-gray-900">{results.organicTraffic.toLocaleString()}</div>
-                        <div className="text-gray-600 text-sm">Aylık Organik Trafik</div>
+                        <div className="text-2xl font-bold text-gray-900">{daPaCheck.data.spamScore}%</div>
+                        <div className="text-gray-600 text-sm">Spam Score</div>
                       </div>
                     </div>
 
                     <div className="p-6 bg-blue-50 rounded-lg">
                       <h4 className="font-semibold text-blue-900 mb-2">Öneriler</h4>
                       <ul className="space-y-2 text-blue-800 text-sm">
-                        {results.da < 30 && <li>• Kaliteli backlink kazanmaya odaklanın</li>}
-                        {results.pa < 40 && <li>• Sayfa içi SEO optimizasyonu yapın</li>}
+                        {daPaCheck.data.da < 30 && <li>• Kaliteli backlink kazanmaya odaklanın</li>}
+                        {daPaCheck.data.pa < 40 && <li>• Sayfa içi SEO optimizasyonu yapın</li>}
+                        {daPaCheck.data.spamScore > 5 && <li>• Spam skorunuzu düşürmek için zararlı linkleri temizleyin</li>}
                         <li>• Düzenli içerik üretimi yapın</li>
                         <li>• Teknik SEO sorunlarını giderin</li>
                       </ul>
+                    </div>
+
+                    <div className="text-xs text-gray-500 text-center">
+                      Son güncelleme: {new Date(daPaCheck.data.lastCrawled).toLocaleDateString('tr-TR')}
                     </div>
                   </div>
                 </div>

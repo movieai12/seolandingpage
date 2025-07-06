@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { JsonLd } from '@/components/JsonLd'
+import { ReactQueryProvider } from '@/lib/react-query'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -90,9 +91,11 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body className={`${inter.className} antialiased bg-white text-gray-900`}>
-        <div id="__next">
-          {children}
-        </div>
+        <ReactQueryProvider>
+          <div id="__next">
+            {children}
+          </div>
+        </ReactQueryProvider>
       </body>
     </html>
   )
