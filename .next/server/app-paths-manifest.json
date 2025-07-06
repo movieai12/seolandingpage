@@ -1,5 +1,8 @@
 {
-  "/araclar/sira-bulucu/page": "app/araclar/sira-bulucu/page.js",
+  "/not-found": "app/not-found.js",
   "/araclar/teknik-seo-analizi/page": "app/araclar/teknik-seo-analizi/page.js",
-  "/araclar/da-pa-checker/page": "app/araclar/da-pa-checker/page.js"
+  "/araclar/da-pa-checker/page": "app/araclar/da-pa-checker/page.js",
+  "/hizmetler/page": "app/hizmetler/page.js",
+  "/seo-analizi/page": "app/seo-analizi/page.js",
+  "/page": "app/page.js"
 }

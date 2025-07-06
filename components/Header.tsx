@@ -130,18 +130,6 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Desktop CTA Button */}
-          <div className="hidden lg:flex items-center">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/seo-analizi"
-                className="bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-300"
-              >
-                Ücretsiz Analiz
-              </Link>
-            </motion.div>
-          </div>
-
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -215,16 +203,6 @@ export function Header() {
                   </div>
                 ))}
                 
-                {/* Mobile CTA Button */}
-                <div className="px-4 pt-4 border-t border-gray-200">
-                  <Link
-                    href="/seo-analizi"
-                    className="block w-full bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors duration-300 text-center"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Ücretsiz Analiz
-                  </Link>
-                </div>
               </nav>
             </motion.div>
           )}
