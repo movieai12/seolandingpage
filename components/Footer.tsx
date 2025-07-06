@@ -2,13 +2,13 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Facebook, 
-  Twitter, 
-  Linkedin, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Linkedin,
   Instagram,
   ArrowUp
 } from 'lucide-react'
@@ -26,9 +26,9 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-6">
             <Logo showText={true} className="text-white" />
-            
+
             <p className="text-gray-300 leading-relaxed">
-              Türkiye'nin öncü AI destekli SEO ajansı. Google'da zirveye tırmanmak 
+              Türkiye'nin öncü AI destekli SEO ajansı. Google'da zirveye tırmanmak
               için en gelişmiş teknolojileri kullanıyoruz.
             </p>
 
@@ -62,7 +62,7 @@ export default function Footer() {
                 { name: 'SEO Eğitimi', href: '/hizmetler' }
               ].map((service, index) => (
                 <li key={index}>
-                  <Link 
+                  <Link
                     href={service.href}
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-300"
                   >
@@ -87,7 +87,7 @@ export default function Footer() {
                 { name: 'Kullanım Şartları', href: '/kullanim-sartlari' }
               ].map((page, index) => (
                 <li key={index}>
-                  <Link 
+                  <Link
                     href={page.href}
                     className="text-gray-300 hover:text-blue-400 transition-colors duration-300"
                   >
@@ -98,48 +98,26 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h3 className="text-xl font-semibold mb-6">SEO Bülteni</h3>
-            <p className="text-gray-300 mb-6">
-              Haftalık SEO ipuçları ve güncellemeler için abone olun.
-            </p>
-            
-            <div className="space-y-4">
-              <input
-                type="email"
-                placeholder="E-posta adresiniz"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-blue-500 focus:outline-none text-white placeholder-gray-400"
-              />
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300"
-              >
-                Abone Ol
-              </motion.button>
-            </div>
-
-            <div className="mt-8">
-              <h4 className="font-semibold mb-4">Bizi Takip Edin</h4>
-              <div className="flex gap-3">
-                {[
-                  { icon: Facebook, name: 'Facebook' },
-                  { icon: Twitter, name: 'Twitter' },
-                  { icon: Linkedin, name: 'LinkedIn' },
-                  { icon: Instagram, name: 'Instagram' }
-                ].map((social, index) => (
-                  <motion.a
-                    key={index}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    href="#"
-                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-600 transition-all duration-300"
-                    aria-label={social.name}
-                  >
-                    <social.icon className="w-5 h-5" />
-                  </motion.a>
-                ))}
-              </div>
+          <div className="mt-8">
+            <h4 className="font-semibold mb-4">Bizi Takip Edin</h4>
+            <div className="flex gap-3">
+              {[
+                { icon: Facebook, name: 'Facebook' },
+                { icon: Twitter, name: 'Twitter' },
+                { icon: Linkedin, name: 'LinkedIn' },
+                { icon: Instagram, name: 'Instagram' }
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  href="#"
+                  className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-600 transition-all duration-300"
+                  aria-label={social.name}
+                >
+                  <social.icon className="w-5 h-5" />
+                </motion.a>
+              ))}
             </div>
           </div>
         </div>

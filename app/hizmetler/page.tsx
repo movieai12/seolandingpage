@@ -42,9 +42,6 @@ export default function HizmetlerPage() {
               <button className="bg-blue-900 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-800 transition-colors duration-300">
                 Ücretsiz Danışmanlık Al
               </button>
-              <button className="border-2 border-blue-900 text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-900 hover:text-white transition-all duration-300">
-                Fiyat Teklifi İste
-              </button>
             </div>
           </div>
         </div>
